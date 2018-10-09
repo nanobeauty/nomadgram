@@ -25,7 +25,7 @@ class Comment(TimeStampedModel):
 
     """ Comment Model """
 
-    comment = models.TextField()
+    message = models.TextField()
     creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True)
     image = models.ForeignKey(Image, on_delete=models.PROTECT, null=True)
 
