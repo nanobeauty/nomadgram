@@ -4,7 +4,7 @@ from . import models, serializers
 
 # Create your views here.
 
-class ListAllImage(APIView):
+class ListAllImages(APIView):
 
     def get(self, request, format=None):
 
