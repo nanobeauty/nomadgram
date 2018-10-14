@@ -22,33 +22,9 @@ class Feed(APIView):
                
                 image_list.append(image)
 
-        sorted_list = sorted(image_list, key=get_key, reverse=True)
+        sorted_list = sorted(image_list, key=lambda image: image.created_at, reverse=True)
 
         serializer = serializers.ImageSerializer(sorted_list, many=True)
 
         return Response(data = serializer.data)
 
-def get_key(image):
-    return image.created_at
-        
-
-#class ListAllComments(APIView):
-#
-#    def get(self, request, format=None):
-#
-#        all_comments = models.Comment.objects.all()
-#
-#        serializer = serializers.CommentSerializer(all_comments, many=True)
-#
-#        return Response(data=serializer.data)
-#
-#
-#class ListAllLikes(APIView):
-#
-#    def get(self, request, format=None):
-#
-#        all_likes = models.Like.objects.all()
-#
-#        serializer = serializers.LikeSerializer(all_likes, many=True)
-#
-#        return Response(data=serializer.data)
