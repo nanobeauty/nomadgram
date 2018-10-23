@@ -29,9 +29,12 @@ class FollowUser(APIView):
 
         user.following.add(user_to_follow)
 
+        user_to_follow.followers.add(user)  # follower에 추가
+
         user.save()
 
         return Response(status=status.HTTP_200_OK)
+
 
 
 
@@ -47,6 +50,8 @@ class UnFollowUser(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         user.following.remove(user_to_follow)
+
+        user_to_follow.followers.remove(user)  # follower에 추가
 
         user.save()
 
