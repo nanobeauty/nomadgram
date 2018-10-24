@@ -21,6 +21,10 @@ class Image(TimeStampedModel):
     creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True, related_name='images')
 
     @property
+    def comment_count(self):
+        return self.comments.all().count()
+
+    @property
     def like_count(self):
         return self.likes.all().count()
 
